@@ -1,0 +1,10 @@
+{
+    "autoload": {
+        "psr-0": {
+            "MyApp": "src"
+        }
+    },
+    "require": {
+        "react/zmq": "0.2.*|0.3.*"
+    }
+}
