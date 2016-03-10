@@ -4,9 +4,11 @@ namespace MyApp;
 
 class RandomDataReader implements DataReaderInterface {
 	private $id;
+	private $connector;
 
-	public function __construct($id) {
+	public function __construct($id, $connector) {
 		$this->id = $id;
+		$this->connector = $connector;
 	}
 
 	public function getId() {
@@ -14,7 +16,10 @@ class RandomDataReader implements DataReaderInterface {
 	}
 
 	public function getData() {
-		return ['id' => $this->getId(), 'data' => rand(10, 100)];
+		fwrite($this->connector, "getData " . (int)$this->id);
+
+		$retval = trim(fread($this->connector, BUFFER_SIZE));
+		return $retval;
 	}
 
 }

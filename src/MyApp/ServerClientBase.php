@@ -4,18 +4,26 @@ namespace MyApp;
 
 abstract class ServerClientBase {
 
-	protected function buildMessage($sequence, $data) {
-		$message = array_merge(['seq' => $sequence, 'msg' => $data]);
+    /**
+     * @param $sequence
+     * @param $data
+     * @return string
+     */
+    protected function buildMessage($sequence, $data) {
+        $message = array_merge(['seq' => $sequence, 'msg' => $data]);
 
-		return json_encode($message);
-	}
+        return json_encode($message);
+    }
 
-	protected function decodeReply($reply) {
-		return json_decode($reply,  true);
-	}
+    /**
+     * @param string $reply
+     * @return array
+     */
+    protected function decodeReply($reply) {
+        return json_decode($reply,  true);
+    }
 
-    protected function multiImplode($array, $glue)
-    {
+    protected function multiImplode($array, $glue) {
         if (!is_array($array)) {
             return $array;
         }
